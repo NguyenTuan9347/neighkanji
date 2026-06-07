@@ -1,0 +1,115 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&display=swap');
+
+  #krad-panel {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    box-sizing: border-box;
+  }
+
+  #krad-inner {
+    background: var(--canvas-elevated, rgba(12,12,16,0.92));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border-subtle, rgba(255,255,255,0.07));
+    box-shadow: var(--shadow, 0 -2px 12px rgba(0,0,0,0.2));
+    padding: 12px 20px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    font-family: var(--font-interface, system-ui, sans-serif);
+  }
+
+  #krad-inner::-webkit-scrollbar { display: none; }
+
+  #krad-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-subtle, rgba(128,128,128,0.6));
+    white-space: nowrap;
+    padding-top: 6px;
+    flex-shrink: 0;
+  }
+
+  #krad-cards {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
+  .krad-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--canvas, rgba(255,255,255,0.04));
+    border: 1px solid var(--border, rgba(255,255,255,0.1));
+    border-radius: 6px;
+    padding: 7px 13px;
+    cursor: default;
+    transition: background 0.15s, border-color 0.15s;
+    animation: krad-slide-in 0.2s ease both;
+    flex-shrink: 0;
+  }
+
+  .krad-card:hover {
+    filter: brightness(1.1);
+  }
+
+  @keyframes krad-slide-in {
+    from { opacity: 0; transform: translateY(5px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .krad-kanji {
+    font-family: 'Noto Serif JP', var(--font-interface, serif);
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--fg, inherit);
+    line-height: 1;
+  }
+
+  .krad-divider {
+    width: 1px;
+    height: 26px;
+    background: var(--border, rgba(128,128,128,0.2));
+    flex-shrink: 0;
+  }
+
+  .krad-desc {
+    font-size: 11px;
+    color: var(--fg-subtle, rgba(128,128,128,0.7));
+    max-width: 120px;
+    line-height: 1.5;
+  }
+
+  #krad-close-btn {
+    margin-left: auto;
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--fg-subtle, rgba(128,128,128,0.5));
+    font-size: 15px;
+    cursor: pointer;
+    padding: 4px 6px;
+    line-height: 1;
+    transition: color 0.15s;
+    align-self: center;
+  }
+
+  #krad-close-btn:hover { color: var(--fg, inherit); }
+</style>
+
+<div id="krad-panel">
+  <div id="krad-inner">
+    <div id="krad-label">similar</div>
+    <div id="krad-cards"></div>
+    <button id="krad-close-btn">✕</button>
+  </div>
+</div>

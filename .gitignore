@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+.venv/
+.env
+env.ini
+*.env
+*.secret
+secrets.toml
+
+.idea/
