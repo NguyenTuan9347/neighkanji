@@ -12,8 +12,6 @@ function kradShow(kanji, neighbours) {
         `;
         cards.appendChild(card);
     });
-
-    document.getElementById('krad-label').textContent = `similar to ${kanji}`;
     document.getElementById('krad-panel').style.display = 'block';
 }
 

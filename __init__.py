@@ -2,13 +2,15 @@ from anki.cards import Card
 from aqt import gui_hooks, mw, QAction
 from aqt.reviewer import Reviewer
 
-from .config import RESOURCES_DIR, get_config, KRAD_PANEL, KRAD_PANEL_HTML, KRAD_PANEL_JS
-from .krake_parser import load_krad, get_neighbours, get_description
+from .config import RESOURCES_DIR, get_config, KRAD_PANEL_HTML, KRAD_PANEL_JS
+from .krake_parser import load_krad, get_neighbours, get_description, load_kanjidic2
 from .deck_field_dialog import show_deck_field_dialog
 
-_fetched_data: str | None = None
 CFG = get_config()
 
+_fetched_data: str | None = None
+
+load_kanjidic2(RESOURCES_DIR / "kanjidic2.xml")
 load_krad(RESOURCES_DIR / "kradfile")
 
 action = QAction("Krad Addon Settings...", mw)
@@ -44,7 +46,6 @@ def on_webview_will_set_content(web_content, context):
         return
     web_content.body += KRAD_PANEL_HTML
     web_content.body += f"<script>{KRAD_PANEL_JS}</script>"
-    print(web_content)
 
 def reviewer_did_show_answer(card: Card) -> None:
     global _fetched_data
